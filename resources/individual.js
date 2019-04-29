@@ -1,16 +1,16 @@
 class Individual {
 
-    mutationRate = 0.01;
-    
+    static get mutationRate() { return 0.01; }
+    static get basicFitnessScore() { return 1; }
+    static get possibleCharacters() {
+        // might switch it to String.toCharcode 
+        return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
+    }
+
     constructor(numOfGenomes) {
         this.genomes = new Array(numOfGenomes);
     }
-    
-    static get possibleCharacters() {
-        // might switch it to String.toCharcode 
-        return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "; 
-    }
-        
+
     static getRandomIndividual(sizeOfTargerPhrase) {
         let individual = new Individual(sizeOfTargerPhrase);
 
@@ -25,28 +25,26 @@ class Individual {
     crossOver(partner) {
         let child = new Individual(this.genomes.length);
         for (let i = 0; i < this.genomes.length; i++) {
-            let randomChoice = Math.round(Math.random());
-            child.genomes[i] = randomChoice === 0 ? this.genomes[i] : partner.genomes[i];
+            let randomChanceToMutate = Math.random() <= Individual.mutationRate;
+
+            if (randomChanceToMutate) {
+                this.mutateGenome(i, child);
+            } else {
+                let randomChoice = Math.round(Math.random());
+                child.genomes[i] = randomChoice === 0 ? this.genomes[i] : partner.genomes[i];
+            }
         }
-        this.mutate(child);
-        
+
         return child;
     }
 
-    mutate(childToMutate) {
-
-        for (let i = 0; i < childToMutate.genomes.length; i++) {
-            let randomChance = Math.random() <= this.mutationRate;
-            
-            if (randomChance) {
-                let randomIndex = Math.floor(Math.random() * Individual.possibleCharacters.length);
-                childToMutate[i] = Individual.possibleCharacters[randomIndex];
-            }
-        }
+    mutateGenome(indexOfGenome, childToMutate) {
+        let randomIndex = Math.floor(Math.random() * Individual.possibleCharacters.length);
+        childToMutate.genomes[indexOfGenome] = Individual.possibleCharacters[randomIndex];
     }
 
-    setFittness(targetPhrase) {
-        let score = 0;
+    setFitness(targetPhrase) {
+        let score = Individual.basicFitnessScore;
         for (let i = 0; i < this.genomes.length; i++) {
             if (this.genomes[i] === targetPhrase[i]) {
                 score++;

@@ -4,6 +4,7 @@
  <title>Text recreator</title>
  <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
  <style>
    body {
     background-color: #272821;
@@ -13,34 +14,11 @@
     font-family: Inconsolata, Courier, monospace;
     font-size: 20px;
   }
-
-  #output {
-    float: left;
-    padding-left: 20%;
-  }
-  #score {
-    padding-left: 55%;
-  }
-  #instructions {
-    float: left;
-    position: absolute;
-    left: 1.5%;
-    bottom: 3%;
-    font-size: small;
-    line-height: 110%;
-  }
-  #signature {
-    float: right;
-    position: absolute;
-    right: 1.5%;
-    bottom: 3%;
-    font-size: small;
-    line-height: 110%;
-  }
   a:link {
     color: inherit;
   }
 </style>
+
 <script src="resources/population.js"></script>
 <script src="resources/main.js"></script>
 <script src="resources/individual.js"></script>
@@ -56,7 +34,7 @@
             <div>
                 <h1>Fittest element:</h1><br>
                 <h2 class="fittest-element"></h2>
-
+                <h2>Generation:</h2>
             </div>
         </div>
         <div class="col"></div>
