@@ -53,4 +53,8 @@ class Individual {
 
         this.fitness = Math.pow(score, 2);
     }
+
+    toString() {
+        return this.genomes.join("");
+    }
 }

@@ -12,16 +12,16 @@ class Population {
         }
     }
     
-    evolve() {
+    evolve(callback) {
         this.generationCount = 0;
         this.makeNewGeneration();
         
         let idealFitnessScore = Math.pow(this.targetPhrase.length + Individual.basicFitnessScore, 2);
         while (this.fittestElement.fitness !== idealFitnessScore) {
+            callback();
             this.makeNewGeneration();
         }
-        
-        console.log(this.fittestElement, this.generationCount, idealFitnessScore);
+
     }
 
     makeNewGeneration() {

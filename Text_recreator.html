@@ -17,11 +17,22 @@
   a:link {
     color: inherit;
   }
+
+  .text-input {
+    width: 50%;
+    float: left;
+    margin-right: 3%;
+  }
+
+  .info-div {
+    margin: 3%
+  }
+
 </style>
 
-<script src="resources/population.js"></script>
-<script src="resources/main.js"></script>
-<script src="resources/individual.js"></script>
+<script src="resources/population.js" defer></script>
+<script src="resources/main.js" defer></script>
+<script src="resources/individual.js" defer></script>
 </head>
 
 <body>
@@ -29,12 +40,13 @@
   <div id="score" class="text"></div>
     <div class="text row">
         <div class="col">
-            <div>
-            </div>
-            <div>
-                <h1>Fittest element:</h1><br>
-                <h2 class="fittest-element"></h2>
+            <div class="form-group input-form info-div">
+                <input type="text" class="form-control text-input" id="phrase-input" placeholder="Enter a phrase">
+                <button id="start-evolve" type="submit" class="btn btn-primary">Start</button>
+                <h1>Fittest element:</h1>
+                <h2 id="fittest-element"></h2>
                 <h2>Generation:</h2>
+                <h2 id="generation-count"></h2>
             </div>
         </div>
         <div class="col"></div>
